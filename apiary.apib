@@ -1,0 +1,213 @@
+FORMAT: 1A
+HOST: http://localhost:8080/
+
+# Photogram API
+
+Photogram is a fictional clone of Instagram. Users can post photos and share with their family and friends as well as 'like' and 'follow' other users.
+
+## User Registration [/api/users/register]
+
+### Register a new User [POST]
+
++ Request (application/json)
+
+        {
+            "firstname": 'John',
+            "lastname": 'Doe'
+        }
+
++ Response 201 (application/json)
+
+        [
+            {
+                "question": "Favourite programming language?",
+                "published_at": "2015-08-05T08:40:51.620Z",
+                "choices": [
+                    {
+                        "choice": "Swift",
+                        "votes": 2048
+                    }, {
+                        "choice": "Python",
+                        "votes": 1024
+                    }, {
+                        "choice": "Objective-C",
+                        "votes": 512
+                    }, {
+                        "choice": "Ruby",
+                        "votes": 256
+                    }
+                ]
+            }
+        ]
+        
+
+## User Login [/api/user/login]
+
+### Login an existing User [POST]
+
++ Request (application/json)
+
+        {
+            "username": "jdoe",
+            "password": "password123"
+        }
+
++ Response 200 (application/json)
+
+        {
+            "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.XbPfbIHMI6arZ3Y922BhjWgQzWXcXNrz0ogtVhfEd2o"
+            "message": "User successfully logged in."
+        }
+        
+## User Logout [/api/user/logout]
+
+### Login an existing User [POST]
+
++ Request (application/json)
+
+        {
+
+        }
+
++ Response 200 (application/json)
+
+        {
+            "message": "User successfully logged out."
+        }
+
+
+## Posts [/api/user/{userid}/posts]
+
+### View all Posts by a User [GET]
+
+You can view a list of all posts by user.
+
++ Request (application/json)
+
+    + Headers
+    
+            Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.XbPfbIHMI6arZ3Y922BhjWgQzWXcXNrz0ogtVhfEd2o
+    
+    + Body
+
+            {
+
+            }
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "posts": [
+                    {
+                        "id": 1,
+                        "user_id": 1,
+                        "photo": "some-photo.jpg",
+                        "description": "My Cool photo",
+                        "created_on": "2018-04-03 14:30:00"
+                    }, 
+                    {
+                        "id": 2,
+                        "user_id": 1,
+                        "photo": "another-photo.jpg",
+                        "description": "My Cool photo",
+                        "created_on": "2018-04-04 10:31:22"
+                    }, 
+                    {
+                        "id": 3,
+                        "user_id": 1,
+                        "photo": "hillside-photo.jpg",
+                        "description": "My Cool photo",
+                        "created_on": "2018-04-05 12:12:00"
+                    }, 
+                    {
+                        "id": 4,
+                        "user_id": 1,
+                        "photo": "beach-photo.jpg",
+                        "description": "My Cool photo",
+                        "created_on": "2018-04-06 18:45:18"
+                    }
+                ]
+            }
+
+### Create a new Post by a User [POST]
+
+You can add a new post for a user.
+
++ Request (application/json)
+
+    + Headers
+    
+            Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.XbPfbIHMI6arZ3Y922BhjWgQzWXcXNrz0ogtVhfEd2o
+    
+    + Body
+
+            {
+                "user_id": 1,
+                "photo": "interesting-photo.jpg",
+                "description": "My interesting photo in the #countryside"
+            }
+
++ Response 201 (application/json)
+
+    + Body
+
+            {
+                
+            }
+            
+            
+## Follow Users [/api/users/{userid}/follow]
+
+### Follow a user [POST]
+
+You can follow a user.
+
++ Request (application/json)
+
+    + Headers
+    
+            Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.XbPfbIHMI6arZ3Y922BhjWgQzWXcXNrz0ogtVhfEd2o
+    
+    + Body
+
+            {
+                "user_id": 1,
+                "follower_id": 2
+            }
+
++ Response 201 (application/json)
+
+    + Body
+
+            {
+                "message": "You are now following that user." 
+            }
+            
+## Like Posts [/api/posts/{postid}/like]
+
+### Like a User Post [POST]
+
+Like a post by a user.
+
++ Request (application/json)
+
+    + Headers
+    
+            Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.XbPfbIHMI6arZ3Y922BhjWgQzWXcXNrz0ogtVhfEd2o
+    
+    + Body
+
+            {
+                "user_id": 1,
+                "post_id": 243
+            }
+
++ Response 201 (application/json)
+
+    + Body
+
+            {
+                "message": "Post liked!" 
+            }
