@@ -70,6 +70,9 @@ Photogram is a fictional clone of Instagram. Users can post photos and share wit
 
 You can view a list of all posts by user.
 
++ Parameters
+    + userid (number) - ID of the User in the form of an integer
+
 + Request (application/json)
 
     + Headers
@@ -123,6 +126,9 @@ You can view a list of all posts by user.
 
 You can add a new post for a user.
 
++ Parameters
+    + userid (number) - ID of the User in the form of an integer
+
 + Request (application/json)
 
     + Headers
@@ -152,6 +158,9 @@ You can add a new post for a user.
 
 You can follow a user.
 
++ Parameters
+    + userid (number) - ID of the target User in the form of an integer
+    
 + Request (application/json)
 
     + Headers
@@ -178,6 +187,9 @@ You can follow a user.
 ### Like a User Post [POST]
 
 Like a post by a user.
+
++ Parameters
+    + postid (number) - ID of the Post in the form of an integer
 
 + Request (application/json)
 
