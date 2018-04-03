@@ -13,32 +13,20 @@ Photogram is a fictional clone of Instagram. Users can post photos and share wit
 
         {
             "firstname": 'John',
-            "lastname": 'Doe'
+            "lastname": 'Doe',
+            "username": "jdoe",
+            "password": "password123",
+            "email": "jdoe@example.com",
+            "location": "Kingston, Jamaica",
+            "biography": "A short bio about me",
+            "profile_photo": "profile-photo.jpg"
         }
 
 + Response 201 (application/json)
 
-        [
-            {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
-                    {
-                        "choice": "Swift",
-                        "votes": 2048
-                    }, {
-                        "choice": "Python",
-                        "votes": 1024
-                    }, {
-                        "choice": "Objective-C",
-                        "votes": 512
-                    }, {
-                        "choice": "Ruby",
-                        "votes": 256
-                    }
-                ]
-            }
-        ]
+        {
+            "message": "User successfully registered"
+        }
         
 
 ## User Login [/api/user/login]
@@ -61,7 +49,7 @@ Photogram is a fictional clone of Instagram. Users can post photos and share wit
         
 ## User Logout [/api/user/logout]
 
-### Login an existing User [POST]
+### Logout an existing User [POST]
 
 + Request (application/json)
 
