@@ -9,7 +9,7 @@ Photogram is a fictional clone of Instagram. Users can post photos and share wit
 
 ### Register a new User [POST]
 
-+ Request (application/json)
++ Request (multipart/form-data)
 
         {
             "firstname": 'John',
@@ -29,7 +29,7 @@ Photogram is a fictional clone of Instagram. Users can post photos and share wit
         }
         
 
-## User Login [/api/user/login]
+## User Login [/api/auth/login]
 
 ### Login an existing User [POST]
 
@@ -47,7 +47,7 @@ Photogram is a fictional clone of Instagram. Users can post photos and share wit
             "message": "User successfully logged in."
         }
         
-## User Logout [/api/user/logout]
+## User Logout [/api/auth/logout]
 
 ### Logout an existing User [POST]
 
@@ -64,14 +64,14 @@ Photogram is a fictional clone of Instagram. Users can post photos and share wit
         }
 
 
-## Posts [/api/user/{userid}/posts]
+## Posts [/api/user/{user_id}/posts]
 
-### View all Posts by a User [GET]
+### View User Posts [GET]
 
-You can view a list of all posts by user.
+Get a list of all posts by a specific user.
 
 + Parameters
-    + userid (number) - ID of the User in the form of an integer
+    + user_id (number) - ID of the User in the form of an integer
 
 + Request (application/json)
 
@@ -122,14 +122,14 @@ You can view a list of all posts by user.
                 ]
             }
 
-### Create a new Post by a User [POST]
+### Create a new Post [POST]
 
-You can add a new post for a user.
+Create a new post for the current logged in user.
 
 + Parameters
-    + userid (number) - ID of the User in the form of an integer
+    + user_id (number) - ID of the User in the form of an integer
 
-+ Request (application/json)
++ Request (multipart/form-data)
 
     + Headers
     
@@ -148,18 +148,18 @@ You can add a new post for a user.
     + Body
 
             {
-                
+                "message": "Successfully created a new post"    
             }
             
             
-## Follow Users [/api/users/{userid}/follow]
+## Follow Users [/api/users/{user_id}/follow]
 
 ### Follow a user [POST]
 
-You can follow a user.
+Follow the user whos profile you are viewing.
 
 + Parameters
-    + userid (number) - ID of the target User in the form of an integer
+    + user_id (number) - ID of the target User in the form of an integer
     
 + Request (application/json)
 
@@ -182,14 +182,64 @@ You can follow a user.
                 "message": "You are now following that user." 
             }
             
-## Like Posts [/api/posts/{postid}/like]
 
-### Like a User Post [POST]
+## View Posts [/api/posts]
 
-Like a post by a user.
+### View all Posts by all Users [GET]
+
+View all posts by all registered users in the system.
+
++ Request (application/json)
+
+    + Headers
+    
+            Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.XbPfbIHMI6arZ3Y922BhjWgQzWXcXNrz0ogtVhfEd2o
+    
+    + Body
+
+            {
+
+            }
+
++ Response 201 (application/json)
+
+    + Body
+
+            {
+                "posts": [
+                    {
+                        "id": 1,
+                        "user_id": 1,
+                        "photo": "cool-photo.jpg",
+                        "caption": "This is such an awesome photo from high school",
+                        "created_on": "2018-04-05 14:25:00"
+                    },
+                    {
+                        "id": 2,
+                        "user_id": 3,
+                        "photo": "another-photo.jpg",
+                        "caption": "Best friends from wen!",
+                        "created_on": "2018-04-05 10:14:23"
+                    },
+                    {
+                        "id": 3,
+                        "user_id": 3,
+                        "photo": "beautiful-blue-mountains.jpg",
+                        "caption": "Amazing photo of the Blue Mountain Peak",
+                        "created_on": "2018-03-31 12:58:12"
+                    }
+                ]
+            }
+
+
+## Like Posts [/api/posts/{post_id}/like]
+
+### Like a specific Post [POST]
+
+Like a specific post by a user.
 
 + Parameters
-    + postid (number) - ID of the Post in the form of an integer
+    + post_id (number) - ID of the Post in the form of an integer
 
 + Request (application/json)
 
