@@ -63,8 +63,61 @@ Photogram is a fictional clone of Instagram. Users can post photos to share with
             "message": "User successfully logged out."
         }
 
+## User Details [/api/users/{user_id}]
 
-## Posts [/api/user/{user_id}/posts]
+### Get user Details [GET]
+
+Get information about a user. The 'posts' key in the response can be optional. If you want you can use a separate AJAX call to "/api/users/{user_id}/posts" then that is fine as well.
+
++ Parameters
+    + user_id (number) - ID of the User in the form of an integer
+    
++ Request (application/json)
+
+    + Headers
+    
+            Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.XbPfbIHMI6arZ3Y922BhjWgQzWXcXNrz0ogtVhfEd2o
+    
+    + Body
+
+            {
+
+            }
+            
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "id": 1,
+                "username": "mjane",
+                "firstname": "Mary",
+                "lastname": "Jane",
+                "email": "mjane@example.com",
+                "location": "Kingston, Jamaica",
+                "biography": "My short bio",
+                "profile_photo": "myphoto.jpg",
+                "joined_on": "April, 2018",
+                "posts": [
+                    {
+                        "id": 1,
+                        "user_id": 1,
+                        "photo": "some-photo.jpg",
+                        "description": "My Cool photo",
+                        "created_on": "2018-04-03 14:30:00"
+                    }, 
+                    {
+                        "id": 2,
+                        "user_id": 1,
+                        "photo": "another-photo.jpg",
+                        "description": "My Cool photo",
+                        "created_on": "2018-04-04 10:31:22"
+                    } 
+                ]
+                
+            }
+
+## Posts [/api/users/{user_id}/posts]
 
 ### View User Posts [GET]
 
