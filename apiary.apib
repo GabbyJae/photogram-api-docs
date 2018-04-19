@@ -234,6 +234,32 @@ Follow the user whos profile you are viewing.
             {
                 "message": "You are now following that user." 
             }
+
+### Get number of followers [GET]
+
+Get total number of followers for a user
+
++ Parameters
+    + user_id (number) - ID of the target User in the form of an integer
+    
++ Request (application/json)
+
+    + Headers
+    
+            Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.XbPfbIHMI6arZ3Y922BhjWgQzWXcXNrz0ogtVhfEd2o
+    
+    + Body
+
+            {
+            }
+
++ Response 201 (application/json)
+
+    + Body
+
+            {
+                "followers": 800
+            }
             
 
 ## View Posts [/api/posts]
